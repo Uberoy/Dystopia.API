@@ -78,7 +78,7 @@ jobs:
           context: ./Dystopia.API
           file: ./Dystopia.API/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/uberoy/Dystopia.API:latest
+          tags: ghcr.io/uberoy/dystopia.api:latest
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
