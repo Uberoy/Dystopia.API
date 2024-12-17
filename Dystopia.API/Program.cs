@@ -31,12 +31,10 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure middleware
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors("Support");
 
-// Define POST endpoint
 app.MapPost("/tickets", async (Ticket ticket, RabbitMqService rabbitMqService) =>
 {
     try
