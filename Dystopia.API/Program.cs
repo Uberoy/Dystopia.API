@@ -7,7 +7,7 @@ using Dystopia.API.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://0.0.0.0:4951");
+builder.WebHost.UseUrls("http://0.0.0.0:5951");
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
