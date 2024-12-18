@@ -1,7 +1,4 @@
 using Dystopia.API.Entities;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using System.Text.Json;
 using Dystopia.API.RabbitMQ;
 
@@ -21,7 +18,7 @@ builder.Services
             "Support",
             policy =>
                 policy
-                    .WithOrigins("https://localhost:7151", "https://localhost:7173", "https://localhost:7777")
+                    .WithOrigins("https://localhost:7777")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
