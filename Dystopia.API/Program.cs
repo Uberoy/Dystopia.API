@@ -18,7 +18,7 @@ builder.Services
             "Support",
             policy =>
                 policy
-                    .WithOrigins("https://localhost:7777")
+                    .WithOrigins("http://localhost:7777")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
@@ -28,9 +28,17 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseCors("Support");
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseCors("Support");
+
+app.MapMethods("/tickets", new[] { "OPTIONS" }, (HttpContext context) =>
+{
+    context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:7777");
+    context.Response.Headers.Add("Access-Control-Allow-Methods", "POST, OPTIONS");
+    context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+    return Results.Ok();
+});
 
 app.MapPost("/tickets", async (Ticket ticket, RabbitMqService rabbitMqService) =>
 {
